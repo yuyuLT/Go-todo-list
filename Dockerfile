@@ -11,7 +11,8 @@ ENV MODULE_PATH=${MODULE_PATH}
 
 WORKDIR ${WORK_DIR}
 
-RUN go install github.com/cosmtrek/air@latest
+RUN apk add --update gcc musl-dev \
+  && go install github.com/cosmtrek/air@latest
 
 EXPOSE ${PORTS}
 
