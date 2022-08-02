@@ -17,6 +17,9 @@ services:
     container_name: ${COMPOSE_PROJECT_NAME}-${ENVIRONMENT}_golang
     restart: always
     volumes:
+      - type: volume
+        source: go-data-volume
+        target: /go
       - type: bind
         source: ${PWD}/app
         target: ${WORK_DIR}
@@ -38,3 +41,6 @@ services:
     profiles:
       - "prod"
     container_name: ${COMPOSE_PROJECT_NAME}-${ENVIRONMENT}_golang
+
+volumes:
+  go-data-volume:
