@@ -9,6 +9,8 @@
 !app
 !app/*
 app/tmp
+!app/*/*.go
+*.sql
 
 !scripts
 !scripts/*
