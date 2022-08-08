@@ -13,8 +13,8 @@ type User struct{
 	Name string
 }
 
-func CreateDb(){
-	db_operation.CreateDb()
+func CreateUserTable(){
+	db_operation.CreateUserTable()
 }
 
 func InsertUser(id int, password string, name string){
