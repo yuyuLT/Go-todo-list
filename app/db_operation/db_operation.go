@@ -3,6 +3,7 @@ package db_operation
 import (
 	"fmt"
 	"log"
+	"os"
 	"database/sql"
 	_ "github.com/mattn/go-sqlite3"
 )
@@ -35,6 +36,7 @@ func InsertUser(id int, password string, name string){
 	_, err := DbConnection.Exec(cmd, id, password, name)
     if err != nil {
         log.Fatalln(err)
+		os.Exit(0)
     }
 }
 
