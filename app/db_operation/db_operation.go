@@ -9,7 +9,7 @@ import (
 
 var DbConnection *sql.DB
 
-func CreateDb(){
+func CreateUserTable(){
 	DbConnection, _ := sql.Open("sqlite3", "./example.sql")
 	defer DbConnection.Close()
 
