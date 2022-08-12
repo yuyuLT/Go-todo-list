@@ -2,6 +2,7 @@ package main
 
 import (
   "fmt"
+  "os"
   "example.com/module/data_controller"
 )
 
@@ -9,8 +10,9 @@ func main() {
 
   fmt.Print("新規ユーザ登録:1 ログイン:2 > ")
   var status int
-  var id int
   fmt.Scan(&status)
+
+  var id int
   
   if status == 1 {
     //新規登録
@@ -43,13 +45,35 @@ func main() {
     data_controller.Login(id,password)
   }else{
     fmt.Println("値が不正です。半角数字1か2を入力してください")
+    os.Exit(0)
   }
 
-  //新規投稿登録
-  fmt.Print("タスクを入力してください > ")
-  var content string
-  fmt.Scan(&content) 
+  for {
+    //タスク一覧表示
+    data_controller.ShowPost(id)  
 
-  data_controller.InsertPost(id,content)
-  
+    fmt.Print("タスク登録:1 タスク削除:2 ログアウト:3 > ")
+    var action int
+    fmt.Scan(&action)
+
+    //タスク登録
+    if action == 1{
+      fmt.Print("タスクを入力してください > ")
+      var content string
+      fmt.Scan(&content) 
+
+      data_controller.InsertPost(id,content)  
+    }
+
+    //タスク削除
+    if action == 2{
+
+    }
+
+    //ログアウト処理
+    if action == 3{
+      fmt.Println("ログアウトしました")
+      os.Exit(0)
+    }
+  }
 }
