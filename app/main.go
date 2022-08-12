@@ -9,18 +9,18 @@ func main() {
 
   fmt.Print("新規ユーザ登録:1 ログイン:2 > ")
   var status int
+  var id int
   fmt.Scan(&status)
   
   if status == 1 {
     //新規登録
-    data_controller.CreateUserTable()
+    data_controller.CreateTables()
 
     fmt.Print("あなたのユーザ名を設定してください > ")
     var name string
     fmt.Scan(&name) 
 
     fmt.Print("ログインID（整数）を設定してください > ")
-    var id int
     fmt.Scan(&id) 
 
     fmt.Print("ログインパスワードを設定してください > ")
@@ -33,7 +33,6 @@ func main() {
   }else if status == 2 {
     //ログイン機能
     fmt.Print("ログインID（整数）を入力してください > ")
-    var id int
     fmt.Scan(&id) 
 
     fmt.Print("ログインパスワードを入力してください > ")
@@ -46,5 +45,11 @@ func main() {
     fmt.Println("値が不正です。半角数字1か2を入力してください")
   }
 
+  //新規投稿登録
+  fmt.Print("タスクを入力してください > ")
+  var content string
+  fmt.Scan(&content) 
+
+  data_controller.InsertPost(id,content)
   
 }

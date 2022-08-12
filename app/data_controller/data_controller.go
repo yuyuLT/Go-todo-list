@@ -14,8 +14,8 @@ type User struct{
 	Name string
 }
 
-func CreateUserTable(){
-	db_operation.CreateUserTable()
+func CreateTables(){
+	db_operation.CreateTables()
 }
 
 func InsertUser(id int, password string, name string){
@@ -45,4 +45,9 @@ func SelectUser(id int)(int,string,string){
         }
     }
     return user.Id, user.Password, user.Name
+}
+
+func InsertPost(id int, content string){
+	db_operation.InsertPost(id, content)
+	fmt.Println("タスクを登録しました")
 }
