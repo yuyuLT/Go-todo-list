@@ -86,5 +86,14 @@ func InsertPost(user_id int, content string){
     }
 }
 
+func DeletePost(id int, task_num int){
+	DbConnection, _ := sql.Open("sqlite3", "./example.sql")
+	defer DbConnection.Close()
 
+	cmd := "DELETE FROM task WHERE id = (SELECT id FROM task WHERE user_id = ? LIMIT ?,1)"
+    _, err := DbConnection.Exec(cmd, id, task_num)
+    if err != nil {
+        log.Fatalln(err)
+    }
+}
 
