@@ -10,7 +10,7 @@ import (
 
 var DbConnection *sql.DB
 
-func CreateUserTable(){
+func CreateTables(){
 	DbConnection, _ := sql.Open("sqlite3", "./example.sql")
 	defer DbConnection.Close()
 
@@ -20,6 +20,19 @@ func CreateUserTable(){
 		name STRING)`
 
 	_, err := DbConnection.Exec(cmd)
+
+	if err != nil {
+        fmt.Println("エラー")
+        log.Fatalln(err)
+    }
+
+	cmd = `CREATE TABLE IF NOT EXISTS task(
+		id INTEGER PRIMARY KEY AUTOINCREMENT,
+		user_id INT,
+		date TIMESTAMP,
+		content STRING)`
+
+	_, err = DbConnection.Exec(cmd)
 
 	if err != nil {
         fmt.Println("エラー")
@@ -48,5 +61,18 @@ func SelectUser(id int) *sql.Row{
 	row := DbConnection.QueryRow(cmd, id)
     
 	return row
+}
+
+func InsertPost(user_id int, content string){
+	DbConnection, _ := sql.Open("sqlite3", "./example.sql")
+	defer DbConnection.Close()
+
+	cmd := "INSERT INTO task (user_id, date, content) VALUES (?, CURRENT_TIMESTAMP, ?)"
+
+	_, err := DbConnection.Exec(cmd, user_id, content)
+    if err != nil {
+        log.Fatalln(err)
+		os.Exit(0)
+    }
 }
 
