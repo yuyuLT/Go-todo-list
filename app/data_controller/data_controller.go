@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"time"
 	"database/sql"
 	"example.com/module/db_operation"
 )
@@ -12,6 +13,13 @@ type User struct{
 	Id int
 	Password string
 	Name string
+}
+
+type Task struct{
+	Id int
+	UserId int
+	Date time.Time
+	Content string
 }
 
 func CreateTables(){
@@ -45,6 +53,29 @@ func SelectUser(id int)(int,string,string){
         }
     }
     return user.Id, user.Password, user.Name
+}
+
+func ShowPost(id int){
+    rows:= db_operation.GetTasks(id)
+    var tasks []Task
+
+    for rows.Next() {
+        var task Task
+        err := rows.Scan(&task.Id,&task.UserId,&task.Date,&task.Content)
+        if err != nil {
+            log.Println(err)
+        }
+        tasks = append(tasks, task)
+    }
+    err := rows.Err()
+    if err != nil {
+        log.Fatalln(err)
+    }
+
+    for i, task := range tasks {
+		number := i + 1
+        fmt.Println(number,task.Content)
+    }
 }
 
 func InsertPost(id int, content string){

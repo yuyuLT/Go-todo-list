@@ -63,6 +63,16 @@ func SelectUser(id int) *sql.Row{
 	return row
 }
 
+func GetTasks(id int) *sql.Rows{
+	DbConnection, _ := sql.Open("sqlite3", "./example.sql")
+	defer DbConnection.Close()
+
+	cmd := "SELECT * FROM task WHERE user_id = ?"
+	rows, _ := DbConnection.Query(cmd,id)
+    
+	return rows
+}
+
 func InsertPost(user_id int, content string){
 	DbConnection, _ := sql.Open("sqlite3", "./example.sql")
 	defer DbConnection.Close()
@@ -75,4 +85,6 @@ func InsertPost(user_id int, content string){
 		os.Exit(0)
     }
 }
+
+
 

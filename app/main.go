@@ -45,11 +45,13 @@ func main() {
     fmt.Println("値が不正です。半角数字1か2を入力してください")
   }
 
+  //タスク一覧表示
+  data_controller.ShowPost(id)  
+
   //新規投稿登録
   fmt.Print("タスクを入力してください > ")
   var content string
   fmt.Scan(&content) 
 
-  data_controller.InsertPost(id,content)
-  
+  data_controller.InsertPost(id,content)  
 }
