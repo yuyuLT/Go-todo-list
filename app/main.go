@@ -67,7 +67,11 @@ func main() {
 
     //タスク削除
     if action == 2{
+      fmt.Print("削除したいタスクの番号を入力してください > ")
+      var task_num int
+      fmt.Scan(&task_num) 
 
+      data_controller.DeletePost(id,task_num) 
     }
 
     //ログアウト処理

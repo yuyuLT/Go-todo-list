@@ -82,3 +82,8 @@ func InsertPost(id int, content string){
 	db_operation.InsertPost(id, content)
 	fmt.Println("タスクを登録しました")
 }
+
+func DeletePost(id int, task_num int){
+	db_operation.DeletePost(id, task_num - 1)
+	fmt.Println("タスクを削除しました")
+}
