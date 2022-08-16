@@ -15,9 +15,9 @@ func CreateTables() {
 	defer DbConnection.Close()
 
 	cmd := `CREATE TABLE IF NOT EXISTS user(
-		id INT PRIMARY KEY,
-		password STRING,
-		name STRING)`
+		id INTEGER PRIMARY KEY,
+		password TEXT,
+		name TEXT)`
 
 	_, err := DbConnection.Exec(cmd)
 
@@ -28,9 +28,9 @@ func CreateTables() {
 
 	cmd = `CREATE TABLE IF NOT EXISTS task(
 		id INTEGER PRIMARY KEY AUTOINCREMENT,
-		user_id INT,
-		date TIMESTAMP,
-		content STRING)`
+		user_id INTEGER,
+		date TEXT,
+		content TEXT)`
 
 	_, err = DbConnection.Exec(cmd)
 
