@@ -26,7 +26,7 @@ func init() {
 	db_operation.CreateTables()
 }
 
-func InsertUser(id int, password string, name string) {
+func RegisterUser(id int, password string, name string) {
 	db_operation.InsertUser(id, password, name)
 	fmt.Println("新規登録に成功しました")
 }
@@ -55,7 +55,7 @@ func SelectUser(id int) (int, string, string) {
 	return user.Id, user.Password, user.Name
 }
 
-func ShowPost(id int) {
+func ShowTasks(id int) {
 	rows := db_operation.GetTasks(id)
 	var tasks []Task
 
@@ -78,12 +78,12 @@ func ShowPost(id int) {
 	}
 }
 
-func InsertPost(id int, content string) {
+func RegisterTask(id int, content string) {
 	db_operation.InsertPost(id, content)
 	fmt.Println("タスクを登録しました")
 }
 
-func DeletePost(id int, task_num int) {
+func DeleteTask(id int, task_num int) {
 	db_operation.DeletePost(id, task_num-1)
 	fmt.Println("タスクを削除しました")
 }
