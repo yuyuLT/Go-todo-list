@@ -29,7 +29,7 @@ func CreateTables() {
 	cmd = `CREATE TABLE IF NOT EXISTS task(
 		id INTEGER PRIMARY KEY AUTOINCREMENT,
 		user_id INTEGER,
-		date TEXT,
+		date TIMESTAMP,
 		content TEXT)`
 
 	_, err = DbConnection.Exec(cmd)

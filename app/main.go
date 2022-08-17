@@ -16,8 +16,6 @@ func main() {
 
 	if status == 1 {
 		//新規登録
-		data_controller.CreateTables()
-
 		fmt.Print("あなたのユーザ名を設定してください > ")
 		var name string
 		fmt.Scan(&name)
@@ -30,7 +28,7 @@ func main() {
 		fmt.Scan(&password)
 
 		//ユーザ情報を登録
-		data_controller.InsertUser(id, password, name)
+		data_controller.RegisterUser(id, password, name)
 
 	} else if status == 2 {
 		//ログイン機能
@@ -50,7 +48,7 @@ func main() {
 
 	for {
 		//タスク一覧表示
-		data_controller.ShowPost(id)
+		data_controller.ShowTasks(id)
 
 		fmt.Print("タスク登録:1 タスク削除:2 ログアウト:3 > ")
 		var action int
@@ -62,7 +60,7 @@ func main() {
 			var content string
 			fmt.Scan(&content)
 
-			data_controller.InsertPost(id, content)
+			data_controller.RegisterTask(id, content)
 		}
 
 		//タスク削除
@@ -71,7 +69,7 @@ func main() {
 			var task_num int
 			fmt.Scan(&task_num)
 
-			data_controller.DeletePost(id, task_num)
+			data_controller.DeleteTask(id, task_num)
 		}
 
 		//ログアウト処理
