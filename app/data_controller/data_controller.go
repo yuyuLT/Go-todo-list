@@ -22,7 +22,7 @@ type Task struct {
 	Content string
 }
 
-func CreateTables() {
+func init() {
 	db_operation.CreateTables()
 }
 

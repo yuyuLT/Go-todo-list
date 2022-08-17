@@ -16,8 +16,6 @@ func main() {
 
 	if status == 1 {
 		//新規登録
-		data_controller.CreateTables()
-
 		fmt.Print("あなたのユーザ名を設定してください > ")
 		var name string
 		fmt.Scan(&name)
