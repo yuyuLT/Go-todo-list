@@ -32,7 +32,7 @@ func RegisterUser(id int, password string, name string) {
 }
 
 func Login(id int, password string) {
-	_, pass, _ := SelectUser(id)
+	_, pass, _ := selectUser(id)
 	if pass == password {
 		fmt.Println("ログインに成功しました")
 	} else {
@@ -41,7 +41,7 @@ func Login(id int, password string) {
 	}
 }
 
-func SelectUser(id int) (int, string, string) {
+func selectUser(id int) (int, string, string) {
 	row := db_operation.SelectUser(id)
 	var user User
 	err := row.Scan(&user.Id, &user.Password, &user.Name)
@@ -79,11 +79,11 @@ func ShowTasks(id int) {
 }
 
 func RegisterTask(id int, content string) {
-	db_operation.InsertPost(id, content)
+	db_operation.InsertTask(id, content)
 	fmt.Println("タスクを登録しました")
 }
 
 func DeleteTask(id int, task_num int) {
-	db_operation.DeletePost(id, task_num-1)
+	db_operation.DeleteTask(id, task_num-1)
 	fmt.Println("タスクを削除しました")
 }

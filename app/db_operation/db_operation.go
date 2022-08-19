@@ -73,7 +73,7 @@ func GetTasks(id int) *sql.Rows {
 	return rows
 }
 
-func InsertPost(user_id int, content string) {
+func InsertTask(user_id int, content string) {
 	DbConnection, _ := sql.Open("sqlite3", "./example.sql")
 	defer DbConnection.Close()
 
@@ -86,7 +86,7 @@ func InsertPost(user_id int, content string) {
 	}
 }
 
-func DeletePost(id int, task_num int) {
+func DeleteTask(id int, task_num int) {
 	DbConnection, _ := sql.Open("sqlite3", "./example.sql")
 	defer DbConnection.Close()
 
