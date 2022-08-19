@@ -6,7 +6,6 @@ import (
 	"fmt"
 	"log"
 	"os"
-	"time"
 )
 
 type User struct {
@@ -16,9 +15,6 @@ type User struct {
 }
 
 type Task struct {
-	Id      int
-	UserId  int
-	Date    time.Time
 	Content string
 }
 
@@ -32,7 +28,7 @@ func RegisterUser(id int, password string, name string) {
 }
 
 func Login(id int, password string) {
-	_, pass, _ := selectUser(id)
+	_, pass, _ := SelectUser(id)
 	if pass == password {
 		fmt.Println("ログインに成功しました")
 	} else {
@@ -41,7 +37,7 @@ func Login(id int, password string) {
 	}
 }
 
-func selectUser(id int) (int, string, string) {
+func SelectUser(id int) (int, string, string) {
 	row := db_operation.SelectUser(id)
 	var user User
 	err := row.Scan(&user.Id, &user.Password, &user.Name)
@@ -61,7 +57,7 @@ func ShowTasks(id int) {
 
 	for rows.Next() {
 		var task Task
-		err := rows.Scan(&task.Id, &task.UserId, &task.Date, &task.Content)
+		err := rows.Scan(&task.Content)
 		if err != nil {
 			log.Println(err)
 		}
